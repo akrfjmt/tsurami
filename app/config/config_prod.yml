@@ -1,11 +1,38 @@
 imports:
     - { resource: config.yml }
 
-#doctrine:
-#    orm:
-#        metadata_cache_driver: apc
-#        result_cache_driver: apc
-#        query_cache_driver: apc
+doctrine:
+  orm:
+    auto_generate_proxy_classes: '%kernel.debug%'
+    default_entity_manager: default
+    entity_managers:
+      default:
+        metadata_cache_driver:
+          type: apcu
+          namespace: meta
+        query_cache_driver:
+          type: apcu
+          namespace: query
+        result_cache_driver:
+          type: redis
+          id: app.result_cache
+          namespace: result
+        second_level_cache:
+          region_cache_driver:
+            type: redis
+            id: app.second_cache
+          enabled: true
+          regions:
+            region_users:
+              lifetime: 86400
+              cache_driver:
+                type: redis
+                id: app.second_cache
+            region_tsuramis:
+              lifetime: 86400
+              cache_driver:
+                type: redis
+                id: app.second_cache
 
 monolog:
     handlers:
