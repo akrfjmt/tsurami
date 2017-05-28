@@ -17,3 +17,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    twitcasting_client_id: ~
+    twitcasting_client_secret: ~
+    memcached_hosts:
+        - {dsn: 127.0.0.1, port: 11211}

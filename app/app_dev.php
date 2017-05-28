@@ -9,6 +9,7 @@ Debug::enable();
 
 $kernel = new AppKernel('dev', true);
 //$kernel->loadClassCache();
+Request::setFactory('BaseBundle\HttpFoundation\SpecialRequest::createSpecialRequest');
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();

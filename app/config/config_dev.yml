@@ -1,34 +1,67 @@
 imports:
-    - { resource: config.yml }
+  - { resource: config.yml }
 
 framework:
-    router:
-        resource: '%kernel.root_dir%/config/routing_dev.yml'
-        strict_requirements: true
-    profiler: { only_exceptions: false }
+  router:
+    resource: '%kernel.root_dir%/config/routing_dev.yml'
+    strict_requirements: true
+  profiler: { only_exceptions: false }
 
 web_profiler:
-    toolbar: true
-    intercept_redirects: false
+  toolbar: true
+  intercept_redirects: false
+
+doctrine:
+  orm:
+    auto_generate_proxy_classes: '%kernel.debug%'
+    default_entity_manager: default
+    entity_managers:
+      default:
+        metadata_cache_driver:
+          type: apcu
+          namespace: meta
+        query_cache_driver:
+          type: apcu
+          namespace: query
+        result_cache_driver:
+          type: redis
+          id: app.result_cache
+          namespace: result
+        second_level_cache:
+          region_cache_driver:
+            type: redis
+            id: app.second_cache
+          enabled: true
+          regions:
+            region_users:
+              lifetime: 86400
+              cache_driver:
+                type: redis
+                id: app.second_cache
+            region_tsuramis:
+              lifetime: 86400
+              cache_driver:
+                type: redis
+                id: app.second_cache
 
 monolog:
-    handlers:
-        main:
-            type: stream
-            path: '%kernel.logs_dir%/%kernel.environment%.log'
-            level: debug
-            channels: ['!event']
-        console:
-            type: console
-            channels: ['!event', '!doctrine']
-        # uncomment to get logging in your browser
-        # you may have to allow bigger header sizes in your Web server configuration
-        #firephp:
-        #    type: firephp
-        #    level: info
-        #chromephp:
-        #    type: chromephp
-        #    level: info
+  handlers:
+    main:
+      type: stream
+      path: '%kernel.logs_dir%/%kernel.environment%.log'
+      level: debug
+      channels: ['!event']
+    console:
+      type: console
+      channels: ['!event', '!doctrine']
+    # uncomment to get logging in your browser
+    # you may have to allow bigger header sizes in your Web server configuration
+    #firephp:
+    #  type: firephp
+    #  level: info
+    #chromephp:
+    #  type: chromephp
+    #  level: info
 
 #swiftmailer:
-#    delivery_addresses: ['me@example.com']
+#  delivery_addresses: ['me@example.com']

@@ -2,11 +2,46 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Tsurami{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {# <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> #}
     </head>
     <body>
+        {% block header %}
+            {# 共通ヘッダー #}
+            {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+            {% set user = account_service.getMyUser %}
+
+            <ul>
+
+            {% if currentPath == path('top') %}
+                <li>ツラミドットコム</li>
+            {% else %}
+                <li><a href="{{ path('top') }}">ツラミドットコム</a></li>
+            {% endif %}
+            {% if user is null %}
+                {% if currentPath == path('login') %}
+                    <li>ログイン</li>
+                {% else %}
+                    <li><a href="{{ path('login') }}">ログイン</a></li>
+                {% endif %}
+            {% else %}
+                {% if currentPath == path('my') %}
+                    <li>マイツラミ</li>
+                {% else %}
+                    <li><a href="{{ path('my') }}">マイツラミ</a></li>
+                {% endif %}
+                {% if currentPath == path('setting') %}
+                    <li>アカウント設定</li>
+                {% else %}
+                    <li><a href="{{ path('setting') }}">アカウント設定</a></li>
+                {% endif %}
+                <li><a href="{{ path('logout') }}">ログアウト</a></li>
+            {% endif %}
+            </ul>
+            <hr>
+        {% endblock %}
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

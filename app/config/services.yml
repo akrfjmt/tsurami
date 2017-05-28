@@ -1,9 +1,26 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/service_container.html
 parameters:
-    #parameter_name: value
+  #parameter_name: value
 
 services:
-    #service_name:
-    #    class: AppBundle\Directory\ClassName
-    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+  #service_name:
+  #    class: AppBundle\Directory\ClassName
+  #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+  app.account_service:
+    class: AppBundle\Service\AccountService
+    arguments: ["@doctrine.orm.default_entity_manager", "@security.token_storage", "main"]
+  app.twitcasting_service:
+    class: AppBundle\Service\TwitcastingService
+    arguments: ["%twitcasting_client_id%", "%twitcasting_client_secret%"]
+  app.tsurami_service:
+    class: AppBundle\Service\TsuramiService
+    arguments: ["@doctrine.orm.default_entity_manager"]
+  app.result_cache:
+    class: Doctrine\Common\Cache\RedisCache
+    arguments:
+      - "@snc_redis.default_client"
+  app.second_cache:
+    class: Doctrine\Common\Cache\RedisCache
+    arguments:
+      - "@snc_redis.default_client"

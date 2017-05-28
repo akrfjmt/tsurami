@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>私のツラミ</h1>
+    <form action="{{ path('my') }}" method="post">
+        <label for="tsurami">ツラミ</label>
+        <input type="text" id="tsurami" name="tsurami" value="" />
+        <button type="submit">ツラーミ</button>
+    </form>
+    <hr>
+    <ul>
+        {% for tsurami in tsuramis %}
+            <li>{{ tsurami.text }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
