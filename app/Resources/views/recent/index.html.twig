@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>最近のツラミ</h1>
-    <ul>
-        {% for tsurami in tsuramis %}
-            <li>{{ tsurami.text }}</li>
-        {% endfor %}
-    </ul>
+  <h1>最近のツラミ</h1>
+  <ul>
+    {% for tsurami in tsuramis %}
+      <li>{{ tsurami.text }}</li>
+    {% endfor %}
+  </ul>
 {% endblock %}
 
 {% block stylesheets %}

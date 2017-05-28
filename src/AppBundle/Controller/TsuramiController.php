@@ -58,7 +58,7 @@ class TsuramiController extends Controller
         $tsuramiService = $this->container->get('app.tsurami_service');
         $tsuramis = $tsuramiService->findRecentTsuramis();
 
-        return $this->render('top/index.html.twig', [
+        return $this->render('recent/index.html.twig', [
             'tsuramis' => $tsuramis
         ]);
     }

@@ -18,12 +18,11 @@ class TsuramiRepository extends EntityRepository
             ->setMaxResults($limit)
             ->orderBy('t.id', 'DESC')
             ->getQuery()
-            ->useQueryCache(true)
-            ->useResultCache(true)
-            ->setCacheable(true)
-            ->setCacheRegion('region_tsuramis_by_id')
-            ->setLifetime(60);
-        ;
+            ->useQueryCache(true);
+//            ->useResultCache(true)
+//            ->setCacheable(true)
+//            ->setCacheRegion('region_tsuramis_by_id')
+//            ->setLifetime(60);
 
         return $query->getResult();
     }
@@ -36,10 +35,10 @@ class TsuramiRepository extends EntityRepository
         $query = $this->createQueryBuilder('t')
             ->setMaxResults($limit)
             ->orderBy('t.id', 'DESC')
-            ->getQuery();
-
-        $query->useQueryCache(true);
-        $query->useResultCache(true);
+            ->getQuery()
+            ->useQueryCache(true)
+            ->useResultCache(true)
+            ->setResultCacheLifetime(60);
 
         return $query->getResult();
     }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ebe3522d4092cd16e930485f8d6fb906",
+    "content-hash": "7ab6b94c102496fc1f3a1360a5fdfc6a",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -3596,16 +3596,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.3.2",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "85e8372c451510165c04bf781295f9d922fa524b"
+                "reference": "9cfb0f565c399068c84affe0b60dbb6f0cf90742"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/85e8372c451510165c04bf781295f9d922fa524b",
-                "reference": "85e8372c451510165c04bf781295f9d922fa524b",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9cfb0f565c399068c84affe0b60dbb6f0cf90742",
+                "reference": "9cfb0f565c399068c84affe0b60dbb6f0cf90742",
                 "shasum": ""
             },
             "require": {
@@ -3620,12 +3620,15 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
                     "Twig_": "lib/"
+                },
+                "psr-4": {
+                    "Twig\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3655,7 +3658,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-04-21T00:13:02+00:00"
+            "time": "2017-05-25 22:41:27"
         },
         {
             "name": "webmozart/assert",
@@ -3826,7 +3829,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "symfony/symfony": 5
+        "symfony/symfony": 5,
+        "twig/twig": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
