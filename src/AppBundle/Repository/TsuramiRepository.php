@@ -20,6 +20,7 @@ class TsuramiRepository extends EntityRepository
             ->getQuery()
             ->useQueryCache(true);
 //            ->useResultCache(true)
+//            ->setResultCacheLifetime(5);
 //            ->setCacheable(true)
 //            ->setCacheRegion('region_tsuramis')
 //            ->setLifetime(60);
@@ -38,7 +39,7 @@ class TsuramiRepository extends EntityRepository
             ->getQuery()
             ->useQueryCache(true)
             ->useResultCache(true)
-            ->setResultCacheLifetime(5);
+            ->setResultCacheLifetime(10);
 
         return $query->getResult();
     }

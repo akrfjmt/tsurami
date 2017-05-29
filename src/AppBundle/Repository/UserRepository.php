@@ -23,12 +23,13 @@ class UserRepository extends EntityRepository implements UserLoaderInterface
      * @return \AppBundle\Entity\User|null
      */
     public function findByUsername($username) {
-        return $this->createQueryBuilder('u')
+        $query = $this->createQueryBuilder('u')
             ->where('u.username = :username')
             ->setParameter('username', $username)
             ->getQuery()
-            ->useQueryCache(true)
-            ->getOneOrNullResult();
+            ->useQueryCache(true);
+
+        return $query->getOneOrNullResult();
     }
 
     /**
@@ -36,17 +37,13 @@ class UserRepository extends EntityRepository implements UserLoaderInterface
      * @return \AppBundle\Entity\User|null
      */
     public function findById($id) {
-        return $this->createQueryBuilder('u')
+        $query = $this->createQueryBuilder('u')
             ->where('u.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->useQueryCache(true)
-            ->useResultCache(true)
-            ->setResultCacheLifetime(60)
-            ->setCacheable(true)
-            ->setCacheRegion('region_users')
-            ->setLifetime(60)
-            ->getOneOrNullResult();
+            ->useQueryCache(true);
+
+        return $query->getOneOrNullResult();
     }
 
     /**
@@ -74,10 +71,8 @@ class UserRepository extends EntityRepository implements UserLoaderInterface
             // ↓ u.twitcasting_user_idで指定するとアクセス修飾子がprivateなのでダメ。
             ->where('u.twitcastingUserId = :twitcastingUserId')
             ->setParameter('twitcastingUserId', $twitcastingUserId)
-            ->getQuery();
-
-        $query->useQueryCache(true);
-        $query->useResultCache(true);
+            ->getQuery()
+            ->useQueryCache(true);
 
         return $query->getOneOrNullResult();
     }
@@ -92,10 +87,8 @@ class UserRepository extends EntityRepository implements UserLoaderInterface
             ->select('count(u.twitcastingUserId)')
             ->where('u.twitcastingUserId = :twitcastingUserId')
             ->setParameter('twitcastingUserId', $twitcastingUserId)
-            ->getQuery();
-
-        $query->useQueryCache(true);
-        $query->useResultCache(true);
+            ->getQuery()
+            ->useQueryCache(true);
 
         return $query->getSingleScalarResult() > 0;
     }
