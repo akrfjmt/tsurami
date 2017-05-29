@@ -32,7 +32,7 @@ class TsuramiService {
      * @param string $userId
      * @return Tsurami[]
      */
-    public function findTsuramisByUserId(string $userId, int $limit = 10) {
+    public function findTsuramisByUserId(string $userId, int $limit) {
 //        $item = $this->getTsuramisCacheItemByUserId($userId);
 
 //        if ($item->isHit()) {
@@ -49,10 +49,19 @@ class TsuramiService {
     /**
      * @return Tsurami[]
      */
-    public function findRecentTsuramis(int $limit = 10) {
+    public function findRecentTsuramis(int $limit) {
         /** @var Tsurami[] $tsuramis */
         $tsuramis = $this->tsuramiRepository->findRecent($limit);
         return $tsuramis;
+    }
+
+    /**
+     * @return Tsurami
+     */
+    public function findLatestTsurami() {
+        /** @var Tsurami $tsurami */
+        $tsurami = $this->tsuramiRepository->findLatest();
+        return $tsurami;
     }
 
     /**

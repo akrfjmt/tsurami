@@ -44,4 +44,17 @@ class TsuramiRepository extends EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * @return \AppBundle\Entity\Tsurami
+     */
+    public function findLatest() {
+        $query = $this->createQueryBuilder('t')
+            ->setMaxResults(1)
+            ->orderBy('t.id', 'DESC')
+            ->getQuery()
+            ->useQueryCache(true);
+
+        return $query->getOneOrNullResult();
+    }
+
 }

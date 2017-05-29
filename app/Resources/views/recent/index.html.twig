@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <h1>最近のツラミ</h1>
+  <h1>最近のツラミ（最新1000件）</h1>
   <ul>
     {% for tsurami in tsuramis %}
       <li>{{ tsurami.text }}</li>

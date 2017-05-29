@@ -40,7 +40,7 @@ class TsuramiController extends Controller
             return new RedirectResponse($this->generateUrl('my'));
         }
 
-        $tsuramis = $tsuramiService->findTsuramisByUserId($user->getId());
+        $tsuramis = $tsuramiService->findTsuramisByUserId($user->getId(), 1000);
 
         return $this->render('my/index.html.twig', [
             'user' => $user,
