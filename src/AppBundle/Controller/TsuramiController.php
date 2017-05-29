@@ -56,7 +56,7 @@ class TsuramiController extends Controller
     {
         /** @var TsuramiService $tsuramiService */
         $tsuramiService = $this->container->get('app.tsurami_service');
-        $tsuramis = $tsuramiService->findRecentTsuramis();
+        $tsuramis = $tsuramiService->findRecentTsuramis(1000);
 
         return $this->render('recent/index.html.twig', [
             'tsuramis' => $tsuramis
