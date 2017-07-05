@@ -3,7 +3,10 @@
 {% block body %}
   <h1>ツラミドットコム</h1>
   {#<script src="https://unpkg.com/vue@2.3.3"></script>#}
-  <strong>{{ tsurami.text }}</strong>
+
+  {% if tsurami is not null %}
+    <strong>{{ tsurami.text }}</strong>
+  {% endif %}
 
 {% endblock %}
 

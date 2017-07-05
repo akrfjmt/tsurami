@@ -26,6 +26,12 @@ framework:
   session:
     # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
     handler_id: snc_redis.session.handler
+    name: _session_id
+    cookie_lifetime: 126230400
+    cookie_domain:
+    cookie_secure: true
+    cookie_httponly: true
+
   fragments: ~
   http_method_override: true
   assets: ~
